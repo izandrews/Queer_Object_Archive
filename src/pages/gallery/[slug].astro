@@ -230,12 +230,17 @@ const card3 = `${BASE}gallery/${slug}/card3.jpg`;
   padding: 20px 6vw 0 6vw;
 }
 
-.main-image {
-  display: block;
-  margin: 0 auto;
-  max-width: 200px;
-  width: 100%;
-  height: auto;
+@media (min-width: 601px) {
+
+  .main-image {
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: center;
+    max-width: 1000px;
+    width: 100%;
+    height: auto;
+  }
+
 }
 
 .title-image {
