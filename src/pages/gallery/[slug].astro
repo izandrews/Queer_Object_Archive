@@ -103,7 +103,7 @@ const card3 = `${BASE}gallery/${slug}/card3.jpg`;
     <!--{item.data.description && <p>{item.data.description}</p>} -->
 
     <header class="object-header">
-      <a href={BASE}><img src={`${BASE}title.webp`} alt="Queer Object Archive" class="title-image" /></a>
+      <a href={BASE} class="title-link" ><img src={`${BASE}title.webp`} alt="Queer Object Archive" class="title-image" /></a>
 
       <a href={`${BASE}gallery/${prev}`} class="nav-link-left">
         <img src={`${BASE}prev_${colour2}.webp`} alt="prev" class="sticky-note" />
@@ -175,10 +175,6 @@ const card3 = `${BASE}gallery/${slug}/card3.jpg`;
 /* MOBILE LAYOUT */
 @media (max-width: 600px) {
 
-  /* =========================
-     OBJECT HEADER (FIXED GRID)
-     ========================= */
-
   .object-header {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -193,11 +189,15 @@ const card3 = `${BASE}gallery/${slug}/card3.jpg`;
   }
 
   .title-image {
-    grid-area: title;
     max-width: 100px;
     width: 100%;
     height: auto;
     justify-self: center;
+  }
+
+  .title-link {
+  grid-area: title;
+  justify-self: center;
   }
 
   .nav-link-left {
@@ -219,7 +219,7 @@ const card3 = `${BASE}gallery/${slug}/card3.jpg`;
     grid-area: main;
     display: block;
     margin: 10px auto;
-    max-width: 180px;
+    max-width: 80vw;
     width: 100%;
     height: auto;
     justify-self: center;
