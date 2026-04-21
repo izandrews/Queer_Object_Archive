@@ -105,18 +105,19 @@ const card3 = `${BASE}gallery/${slug}/card3.jpg`;
     <header class="object-header">
       <a href={BASE}><img src={`${BASE}title.webp`} alt="Queer Object Archive" class="title-image" /></a>
 
-      <a href={`${BASE}gallery/${prev}`} class="nav-link left">
+      <a href={`${BASE}gallery/${prev}`} class="nav-link-left">
         <img src={`${BASE}prev_${colour2}.webp`} alt="prev" class="sticky-note" />
       </a>
 
       <img src={main} alt="" class="main-image" />
 
 
-      <a href={`${BASE}gallery/${next}`} class="nav-link right">
+      <a href={`${BASE}gallery/${next}`} class="nav-link-right">
         <img src={`${BASE}next_${colour3}.webp`} alt="next" class="sticky-note" />
       </a>
-
+      <div id="nav-link-random"> 
       <img src={`${BASE}RANDOM_${colour1}.webp`} alt="Random object" class="sticky-note" onclick="doRandom()"/>
+      </div>
     </header>
 
     
@@ -176,12 +177,32 @@ const card3 = `${BASE}gallery/${slug}/card3.jpg`;
 
   .object-header {
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: auto auto auto auto auto;
   grid-template-rows: auto auto;
   align-items: center;
   gap: 8vw;
   padding: 20px 6vw 0 6vw;
-}
+  }
+
+  .nav-link-left {
+    grid-column: 2;
+  }
+
+  .nav-link-left {
+    grid-column: 4;
+  }
+
+  #nav-link-random {
+    grid-column: 1;
+  }
+
+  .title-image {
+    grid-column: 1;
+    max-width: 100px;
+    width: 100%;
+    height: auto;
+    justify-self: center;
+  }
 
   .main-image {
     grid-column: auto;
@@ -224,12 +245,7 @@ const card3 = `${BASE}gallery/${slug}/card3.jpg`;
     padding: 20px 6vw 0 6vw;
   }
 
-  .title-image {
-    max-width: 100px;
-    width: 100%;
-    height: auto;
-    justify-self: center;
-  }
+
 
   .sticky-note {
     max-width: 100px;
