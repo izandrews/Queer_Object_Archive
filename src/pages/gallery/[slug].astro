@@ -109,6 +109,8 @@ const card3 = `${BASE}gallery/${slug}/card3.jpg`;
         <img src={`${BASE}prev_${colour2}.webp`} alt="prev" class="sticky-note" />
       </a>
 
+      <img src={main} alt="" class="main-image" />
+
 
       <a href={`${BASE}gallery/${next}`} class="nav-link right">
         <img src={`${BASE}next_${colour3}.webp`} alt="next" class="sticky-note" />
@@ -117,7 +119,7 @@ const card3 = `${BASE}gallery/${slug}/card3.jpg`;
       <img src={`${BASE}RANDOM_${colour1}.webp`} alt="Random object" class="sticky-note" onclick="doRandom()"/>
     </header>
 
-    <img src={main} alt="" class="main-image" />
+    
 
     <div class="images">
       <div class = "controls">
@@ -199,11 +201,8 @@ const card3 = `${BASE}gallery/${slug}/card3.jpg`;
 
   .main-image {
     grid-column: auto;
-    grid-row: auto;
-    width: 100%;
-    max-width: 100%;
     display: block;
-    margin: 0 auto;
+    margin: 10px auto;
   }
 }
 
@@ -234,11 +233,7 @@ const card3 = `${BASE}gallery/${slug}/card3.jpg`;
 
   .main-image {
     grid-column: 3;
-    grid-row: 1;
     justify-self: center;
-    max-width: 1000px;
-    width: 100%;
-    height: auto;
   }
 
 }
