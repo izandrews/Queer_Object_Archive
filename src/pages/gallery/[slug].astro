@@ -122,12 +122,12 @@ const card = `${BASE}gallery/${slug}/card.webp`;
 
     <div class="images">
       <div class = "controls">
-      <img src=`${BASE}mspaint2.webp` id="left-icon" class="side-icon" />
+      <img src={`${BASE}mspaint2.webp`} id="left-icon" class="side-icon" />
       <label class="switch">
         <input type="checkbox" id="myCheck" onclick="doCheck()">
         <span class="slider round"></span>
       </label>
-      <img src=`${BASE}mspaint1.webp` id= "slider" class="side-icon" />
+      <img src={`${BASE}mspaint1.webp`} id= "slider" class="side-icon" />
       </div>
 
       <section class="portrait">
@@ -228,7 +228,7 @@ const card = `${BASE}gallery/${slug}/card.webp`;
      ========================= */
 
   .images {
-    padding: 0 10vw 0 10vw;
+    padding: 0 0 0 0;
   }
 
   .controls {
@@ -402,8 +402,8 @@ const card = `${BASE}gallery/${slug}/card.webp`;
   .main-image {
     grid-column: 3;
     justify-self: center;
-    max-width: 180px;
-    width: 100%;
+    /*max-width: 180px;*/
+    width: 180px;
     height: auto;
     justify-self: center;
   }
