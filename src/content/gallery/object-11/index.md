@@ -1,0 +1,6 @@
+---
+title: "Object Twelve"
+description: "Label Maker"
+---
+
+I bought this label maker when I was 6 with my pocket money at a carboot sale and got so much joy from labelling my house. Categorising and I guess celebrating bringing attention to objects. Care and respect for details. Even the lightswitches were labelled. There's something about the combination of analogue processes and organisation that just gets me. I lost it for a while, thinking it had got mixed up in my ex-boyfriend's stuff after a period of time in my teenage years trying to be "cool". Nothing niche or geeky just trying to be neutral and not stand out. After the end of that relationship I had a year or so of re-remembering bits of me I felt I had cut out. The person I was in the relationship felt like a cookie cutter size of me, where the rest of the dough wasn't relevant. This rediscovery was part of me piecing those bits back together, parts of my identity I had been neglecting, my queerness, my friendships, my nerdiness, silliness, love of dancing and going out. That relationship was lovely in its own right but I lost myself to it. Over Christmas I found the label maker at my mum's and I felt like another piece returned. 

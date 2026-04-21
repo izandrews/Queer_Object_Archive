@@ -1,0 +1,424 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const gallery = await getCollection('gallery');
+
+  return gallery.map((item) => ({
+    params: { slug: item.id },
+    props: { item },
+  }));
+}
+
+const object_number = 16;
+const { item } = Astro.props;
+
+const slug = item.id;
+const { Content } = await render(item);
+
+// extract number from "object-12"
+const match = slug.match(/\d+$/);
+const num = match ? parseInt(match[0]) : null;
+
+let prev = num && num > 1 ? `object-${num - 1}` : null;
+let next;
+next = num + 1;
+if(next < 10){
+  next = num ? `object-0${num + 1}` : null;
+} else {
+  next = num ? `object-${num + 1}` : null;
+}
+
+if(num == 1){
+  prev = `object-${object_number}`;
+};
+if(num == object_number){
+  next = "object-01";
+};
+
+const note_colours = ["y", "b", "g", "p"]
+  .sort(() => Math.random() - 0.5);
+
+const [colour1, colour2, colour3] = note_colours;
+
+const main = `/gallery/${slug}/main.webp`;
+const portrait = `/gallery/${slug}/portrait.webp`;
+const card = `/gallery/${slug}/card.webp`;
+const card2 = `/gallery/${slug}/card2.jpg`;
+const card3 = `/gallery/${slug}/card3.jpg`;
+---
+<Layout>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <!-- <title>{item.data.title}</title> -->
+  </head>
+
+  <body>
+    <script define:vars={{ num, object_number }}>
+      window.doRandom = function (){
+      let randomNumber;
+
+      do {
+        randomNumber = Math.floor(Math.random() * object_number) + 1;
+      }while (randomNumber === num);
+      if(randomNumber < 10){
+        randomNumber = "0" + randomNumber;
+      }
+      const randomPage = "object-" + randomNumber;
+      window.location.href = `/gallery/${randomPage}`;
+
+      };
+
+      window.doCheck = function() {
+        // Get the checkbox
+        console.log("doCheck running")
+        var checkBox = document.getElementById("myCheck");
+        // Get the output text
+        var text = document.getElementById("text");
+        // If the checkbox is checked, display the output text
+        if (checkBox.checked == true){
+          text.style.display = "block";
+          card.style.display = "none";
+        } else {
+          text.style.display = "none";
+          card.style.display = "block";
+        }
+      };
+
+    </script>
+
+    <!-- <h1>{item.data.title}</h1> -->
+
+    <!--{item.data.description && <p>{item.data.description}</p>} -->
+
+    <header class="object-header">
+      <a href="/"><img src="/title.webp" alt="Queer Object Archive" class="title-image" /></a>
+
+      <a href={`/gallery/${prev}`} class="nav-link left">
+        <img src={`/prev_${colour2}.webp`} alt="prev" class="sticky-note" />
+      </a>
+
+      <img src={main} alt="" class="main-image" />
+
+      <a href={`/gallery/${next}`} class="nav-link right">
+        <img src={`/next_${colour3}.webp`} alt="next" class="sticky-note" />
+      </a>
+
+      <img src={`/RANDOM_${colour1}.webp`} alt="Random object" class="sticky-note" onclick="doRandom()"/>
+    </header>
+
+    <div class="images">
+      <div class = "controls">
+      <img src="/mspaint2.webp" id="left-icon" class="side-icon" />
+      <label class="switch">
+        <input type="checkbox" id="myCheck" onclick="doCheck()">
+        <span class="slider round"></span>
+      </label>
+      <img src="/mspaint1.webp" id= "slider" class="side-icon" />
+      </div>
+
+      <section>
+        <img src={portrait} alt="" />
+      </section>
+
+      <section class="card-text">
+        <img src={card} alt="" id="card" />
+        <!--  <p id="text" class="text" style="display:none">
+          {item.body}
+        </p> -->
+        <div id="text" class="text" style="display:none">
+          <div id="text-inner">
+            <div id="box">
+              <Content />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <img src={card2} alt="" />
+      </section>
+
+            <section>
+        <img src={card3} alt="" />
+      </section>
+    </div>
+
+
+
+
+  </body>
+</html>
+
+<style>
+
+/*@font-face {
+  font-family: myFont;
+  src: url(../../assets/handwriting5.ttf);
+}*/
+
+@media (max-width: 600px) {
+  .object-header {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .left,
+  .right {
+    justify-self: center;
+  }
+
+  .main-image {
+    max-width: 200px;
+  }
+}
+
+.object-header {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  align-items: center;
+  gap: 8vw;
+  padding: 20px 6vw 0vw 6vw;
+}
+
+.main-image {
+  max-width: 1000px;
+  width: 100%;
+  height: auto;
+  justify-self: center;
+}
+
+.title-image {
+  max-width: 100px;
+  width: 100%;
+  height: auto;
+  justify-self: center;
+}
+
+.sticky-note {
+  max-width: 100px;
+  height: auto;
+  justify-self: center;
+  cursor: pointer;
+}
+
+.left {
+  justify-self: start;
+}
+
+.right {
+  justify-self: end;
+}
+
+.nav-link {
+  font-size: clamp(0.8rem, 2vw, 1.2rem);
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-items: center;
+  align-items: center;
+  padding: 0 5vw 0 5vw;
+  gap: 3px;
+}
+
+.side-icon {
+  width: 100%;
+  max-width: 40px;
+  height: auto;
+  justify-self: center;
+}
+
+.left-icon {
+  grid-column: 2;
+}
+
+.right-icon {
+  grid-column: 4;
+}
+
+.slider {
+  grid-column: 3;
+}
+
+.images {
+  display: grid;
+  /*grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));*/
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto auto auto;
+  gap: <'row-gap'> 0px <'column-gap'> 0px ;
+  padding: 5vw;
+}
+
+section img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.images section:nth-of-type(1) {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.images section:nth-of-type(2) {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.card-text {
+  grid-column: 2;
+  grid-row: 2;
+  position: relative;
+}
+
+.card-text img,
+/*
+.text {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 2rem;
+  box-sizing: border-box;
+  text-align: center;
+  font-family: "Lucida Handwriting", cursive;
+}
+
+.text p {
+  display: flex;
+  max-width: 80%;
+  padding: 1.5rem;
+
+  border: 1px solid black;
+  border-radius: 12px;
+
+  font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+  line-height: 1.4;
+} */
+
+.text {
+  padding: 0;
+  /*font-family: "Lucida Handwriting", cursive;*/
+  font-family: "Georgia", serif;
+  display: flex;
+  justify-content: center;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+#text-inner {
+  padding: 1rem;
+  max-width: 85%;
+}
+
+#box {
+  padding: 1.5rem;
+  border: 2px double black;
+  border-radius: 0px;
+
+  max-width: 85%;
+  box-sizing: border-box;
+  margin: 2rem auto;
+
+}
+
+.text p {
+  max-width: 80%;
+  margin: 0 auto 1rem auto;
+  padding: 1.5rem;
+
+  font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+
+  line-height: 1.6;
+}
+
+.controls {
+  grid-column: 2;   /* right column */
+  grid-row: 1;      /* top row */
+  justify-self: center;
+  align-self: start;
+  /*margin-bottom: 10px;*/
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ffe600;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: rgb(51, 0, 255);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #ff0000;
+}
+
+/*input:focus + .slider {
+  box-shadow: 0 0 1px #000000;
+}*/
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+section h2 {
+  margin-bottom: 8px;
+}
+</style>
+</Layout>
+
+
+

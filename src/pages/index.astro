@@ -1,11 +1,144 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import Layout from "../layouts/Layout.astro";
+//import RandomAbout from "../components/RandomAbout.jsx";
+//import RandomSubmit from "../components/RandomSubmit.jsx";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const gallery = await getCollection('gallery');
+console.log('GALLERY:', gallery);
+
+const note_colours = ["y", "b", "g", "p"];
+
+let num = Math.floor(Math.random() * 4);
+let num2;
+
+do {
+  num2 = Math.floor(Math.random() * 4);
+} while (num2 === num);
+
+const colour1 = note_colours[num];
+const colour2 = note_colours[num2];
 ---
 
 <Layout>
-	<Welcome />
+    <header class="site-header">
+       <!-- <a href="/about" class="nav-link left">about the project</a> -->
+      <a href="/about" class="left-note">
+        <img src={`/about_${colour1}.webp`} class="sticky-note" />
+      </a>
+      <img src="/title.webp" alt="Queer Object Archive" class="title-image" />
+      <a href="/submit" class="right-note">
+        <img src={`/submit_${colour2}.webp`} class="sticky-note" />
+      </a>
+
+
+
+    </header>
+
+    <div class="grid">
+      {gallery.map((item) => {
+        const slug = item.id;
+
+        const mainImage = `/gallery/${slug}/main.webp`;
+
+        return (
+          <a href={`/gallery/${slug}`} class="card">
+            <img src={mainImage} alt={item.data.title} loading="lazy" />
+            <!-- <h2>{item.data.title}</h2> -->
+          </a>
+        );
+      })}
+    </div>
+
+<style>
+
+.card:hover {
+  transform: scale(1.09);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 10px;
+  padding: 5vw;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+h1 {
+  font-size: clamp(1.5rem, 4vw, 3rem);
+}
+
+.card {
+  text-decoration: none;
+  color: inherit;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.card h2 {
+  font-size: 1rem;
+  margin-top: 8px;
+}
+
+@media (max-width: 600px) {
+  .site-header {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .left,
+  .right {
+    justify-self: center;
+  }
+
+  .title-image {
+    max-width: 100px;
+  }
+}
+
+.site-header {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  align-items: center;
+  padding: 15px 30vw;
+  column-gap: 3vw;
+}
+
+.title-image {
+  max-width: 150px;
+  width: 100%;
+  height: auto;
+  justify-self: center;
+}
+
+.sticky-note {
+  max-width: 150px;
+  width: 100%;
+  height: auto;
+} 
+
+
+.left {
+  justify-self: start;
+}
+
+.right {
+  justify-self: end;
+}
+
+.nav-link {
+  font-size: clamp(0.8rem, 2vw, 1.2rem);
+}
+
+</style>
 </Layout>
