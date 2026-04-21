@@ -242,17 +242,30 @@ const card = `${BASE}gallery/${slug}/card.webp`;
     display: block;
   }
 
+  .controls {
+    order: 1;
+  }
+
+  .card-text {
+    order: 2;
+  }
+
+  .portrait {
+    order: 0;
+  }
+
+
+
   /* =========================
      CONTROLS
      ========================= */
 
   .controls {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: auto auto auto;
     justify-items: center;
     align-items: center;
     gap: 5px;
-    padding: 10px 0;
   }
 
   .side-icon {
