@@ -1,7 +1,6 @@
-// @ts-check
-
 import { defineConfig } from 'astro/config';
 
-export default {
-  output: 'static'
-}
+export default defineConfig({
+  site: 'https://izandrews.github.io',
+  base: '/Queer_Object_Archive/',
+});
