@@ -171,6 +171,7 @@ const card3 = `${BASE}gallery/${slug}/card3.jpg`;
   src: url(../../assets/handwriting5.ttf);
 }*/
 
+/* MOBILE LAYOUT */
 @media (max-width: 600px) {
 
   .card-text {
@@ -204,9 +205,266 @@ const card3 = `${BASE}gallery/${slug}/card3.jpg`;
     display: block;
     margin: 10px auto;
   }
-}
 
+  .images {
+    max-width: 180px;
+    width: 100%;
+    height: auto;
+    justify-self: center;}
 
+    .left,
+    .right {
+      justify-self: center;
+    }
+
+  .object-header {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    align-items: center;
+    gap: 8vw;
+    padding: 20px 6vw 0 6vw;
+  }
+
+  .title-image {
+    max-width: 100px;
+    width: 100%;
+    height: auto;
+    justify-self: center;
+  }
+
+  .sticky-note {
+    max-width: 100px;
+    height: auto;
+    justify-self: center;
+    cursor: pointer;
+  }
+
+  .left {
+    justify-self: start;
+  }
+
+  .right {
+    justify-self: end;
+  }
+
+  .nav-link {
+    font-size: clamp(0.8rem, 2vw, 1.2rem);
+  }
+
+  .controls {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-items: center;
+    align-items: center;
+    padding: 0 5vw 0 5vw;
+    gap: 3px;
+  }
+
+  .side-icon {
+    width: 100%;
+    max-width: 40px;
+    height: auto;
+    justify-self: center;
+  }
+
+  .left-icon {
+    grid-column: 2;
+  }
+
+  .right-icon {
+    grid-column: 4;
+  }
+
+  .slider {
+    grid-column: 3;
+  }
+
+  .images {
+    display: grid;
+    /*grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));*/
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto;
+    gap: <'row-gap'> 0px <'column-gap'> 0px ;
+    padding: 5vw;
+  }
+
+  section img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .images section:nth-of-type(1) {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .images section:nth-of-type(2) {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .card-text {
+    grid-column: 1;
+    grid-row: 3;
+    position: relative;
+  }
+
+  .card-text img,
+  /*
+  .text {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 2rem;
+    box-sizing: border-box;
+    text-align: center;
+    font-family: "Lucida Handwriting", cursive;
+  }
+
+  .text p {
+    display: flex;
+    max-width: 80%;
+    padding: 1.5rem;
+
+    border: 1px solid black;
+    border-radius: 12px;
+
+    font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    line-height: 1.4;
+  } */
+
+  .text {
+    padding: 0;
+    /*font-family: "Lucida Handwriting", cursive;*/
+    font-family: "Georgia", serif;
+    display: flex;
+    justify-content: center;
+    text-align: justify;
+    text-justify: inter-word;
+  }
+
+  #text-inner {
+    padding: 1rem;
+    max-width: 85%;
+  }
+
+  #box {
+    padding: 1.5rem;
+    border: 2px double black;
+    border-radius: 0px;
+
+    max-width: 85%;
+    box-sizing: border-box;
+    margin: 2rem auto;
+
+  }
+
+  .text p {
+    max-width: 80%;
+    margin: 0 auto 1rem auto;
+    padding: 1.5rem;
+
+    font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+
+    line-height: 1.6;
+  }
+
+  .controls {
+    grid-column: 2;   /* right column */
+    grid-row: 1;      /* top row */
+    justify-self: center;
+    align-self: start;
+    /*margin-bottom: 10px;*/
+  }
+
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ffe600;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: rgb(51, 0, 255);
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  input:checked + .slider {
+    background-color: #ff0000;
+  }
+
+  /*input:focus + .slider {
+    box-shadow: 0 0 1px #000000;
+  }*/
+
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  section h2 {
+    margin-bottom: 8px;
+  }
+}}
+
+/* LAPTOP LAYOUT */
+@media (min-width: 601px) {
+
+  .main-image {
+    grid-column: 3;
+    justify-self: center;
+    max-width: 180px;
+    width: 100%;
+    height: auto;
+    justify-self: center;
+  }
+
+  
   .images {
   display: grid;
   /*grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));*/
@@ -229,18 +487,7 @@ const card3 = `${BASE}gallery/${slug}/card3.jpg`;
   padding: 20px 6vw 0 6vw;
 }
 
-@media (min-width: 601px) {
 
-  .main-image {
-    grid-column: 3;
-    justify-self: center;
-    max-width: 180px;
-    width: 100%;
-    height: auto;
-    justify-self: center;
-  }
-
-}
 
 .title-image {
   max-width: 100px;
@@ -466,6 +713,8 @@ input:checked + .slider:before {
 
 section h2 {
   margin-bottom: 8px;
+}
+
 }
 </style>
 </Layout>
