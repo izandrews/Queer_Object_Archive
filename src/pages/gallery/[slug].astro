@@ -53,8 +53,6 @@ const [colour1, colour2, colour3] = note_colours;
 const main = `${BASE}gallery/${slug}/main.webp`;
 const portrait = `${BASE}gallery/${slug}/portrait.webp`;
 const card = `${BASE}gallery/${slug}/card.webp`;
-const card2 = `${BASE}gallery/${slug}/card2.jpg`;
-const card3 = `${BASE}gallery/${slug}/card3.jpg`;
 ---
 <Layout>
 <html lang="en">
@@ -149,17 +147,6 @@ const card3 = `${BASE}gallery/${slug}/card3.jpg`;
           </div>
         </div>
       </section>
-
-      <section>
-        <img src={card2} alt="" />
-      </section>
-
-            <section>
-        <img src={card3} alt="" />
-      </section>
-    </div>
-
-
 
 
   </body>
@@ -292,7 +279,7 @@ const card3 = `${BASE}gallery/${slug}/card3.jpg`;
 
   .side-icon {
     width: 100%;
-    max-width: 40px;
+    max-width: 60px;
     height: auto;
     justify-self: center;
   }
@@ -319,6 +306,7 @@ const card3 = `${BASE}gallery/${slug}/card3.jpg`;
     bottom: 0;
     background-color: #ffe600;
     transition: 0.4s;
+    transform: scale(1.5);
   }
 
   .slider:before {
