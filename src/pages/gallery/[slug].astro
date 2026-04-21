@@ -42,11 +42,11 @@ const note_colours = ["y", "b", "g", "p"]
 
 const [colour1, colour2, colour3] = note_colours;
 
-const main = `/gallery/${slug}/main.webp`;
-const portrait = `/gallery/${slug}/portrait.webp`;
-const card = `/gallery/${slug}/card.webp`;
-const card2 = `/gallery/${slug}/card2.jpg`;
-const card3 = `/gallery/${slug}/card3.jpg`;
+const main = `./gallery/${slug}/main.webp`;
+const portrait = `./gallery/${slug}/portrait.webp`;
+const card = `./gallery/${slug}/card.webp`;
+const card2 = `./gallery/${slug}/card2.jpg`;
+const card3 = `./gallery/${slug}/card3.jpg`;
 ---
 <Layout>
 <html lang="en">
@@ -68,7 +68,7 @@ const card3 = `/gallery/${slug}/card3.jpg`;
         randomNumber = "0" + randomNumber;
       }
       const randomPage = "object-" + randomNumber;
-      window.location.href = `/gallery/${randomPage}`;
+      window.location.href = `./gallery/${randomPage}`;
 
       };
 
@@ -95,29 +95,29 @@ const card3 = `/gallery/${slug}/card3.jpg`;
     <!--{item.data.description && <p>{item.data.description}</p>} -->
 
     <header class="object-header">
-      <a href="/"><img src="/title.webp" alt="Queer Object Archive" class="title-image" /></a>
+      <a href="/"><img src="./title.webp" alt="Queer Object Archive" class="title-image" /></a>
 
-      <a href={`/gallery/${prev}`} class="nav-link left">
-        <img src={`/prev_${colour2}.webp`} alt="prev" class="sticky-note" />
+      <a href={`./gallery/${prev}`} class="nav-link left">
+        <img src={`./prev_${colour2}.webp`} alt="prev" class="sticky-note" />
       </a>
 
       <img src={main} alt="" class="main-image" />
 
-      <a href={`/gallery/${next}`} class="nav-link right">
-        <img src={`/next_${colour3}.webp`} alt="next" class="sticky-note" />
+      <a href={`./gallery/${next}`} class="nav-link right">
+        <img src={`./next_${colour3}.webp`} alt="next" class="sticky-note" />
       </a>
 
-      <img src={`/RANDOM_${colour1}.webp`} alt="Random object" class="sticky-note" onclick="doRandom()"/>
+      <img src={`./RANDOM_${colour1}.webp`} alt="Random object" class="sticky-note" onclick="doRandom()"/>
     </header>
 
     <div class="images">
       <div class = "controls">
-      <img src="/mspaint2.webp" id="left-icon" class="side-icon" />
+      <img src="./mspaint2.webp" id="left-icon" class="side-icon" />
       <label class="switch">
         <input type="checkbox" id="myCheck" onclick="doCheck()">
         <span class="slider round"></span>
       </label>
-      <img src="/mspaint1.webp" id= "slider" class="side-icon" />
+      <img src="./mspaint1.webp" id= "slider" class="side-icon" />
       </div>
 
       <section>

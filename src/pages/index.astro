@@ -1,8 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from "../layouts/Layout.astro";
-//import RandomAbout from "../components/RandomAbout.jsx";
-//import RandomSubmit from "../components/RandomSubmit.jsx";
 
 const gallery = await getCollection('gallery');
 console.log('GALLERY:', gallery);
@@ -23,12 +21,12 @@ const colour2 = note_colours[num2];
 <Layout>
     <header class="site-header">
        <!-- <a href="/about" class="nav-link left">about the project</a> -->
-      <a href="/about" class="left-note">
-        <img src={`/about_${colour1}.webp`} class="sticky-note" />
+      <a href="./about" class="left-note">
+        <img src={`./about_${colour1}.webp`} class="sticky-note" />
       </a>
-      <img src="/title.webp" alt="Queer Object Archive" class="title-image" />
-      <a href="/submit" class="right-note">
-        <img src={`/submit_${colour2}.webp`} class="sticky-note" />
+      <img src="./title.webp" alt="Queer Object Archive" class="title-image" />
+      <a href="./submit" class="right-note">
+        <img src={`./submit_${colour2}.webp`} class="sticky-note" />
       </a>
 
 
@@ -39,10 +37,10 @@ const colour2 = note_colours[num2];
       {gallery.map((item) => {
         const slug = item.id;
 
-        const mainImage = `/gallery/${slug}/main.webp`;
+        const mainImage = `./gallery/${slug}/main.webp`;
 
         return (
-          <a href={`/gallery/${slug}`} class="card">
+          <a href={`./gallery/${slug}`} class="card">
             <img src={mainImage} alt={item.data.title} loading="lazy" />
             <!-- <h2>{item.data.title}</h2> -->
           </a>
