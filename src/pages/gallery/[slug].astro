@@ -19,61 +19,73 @@ const { item } = Astro.props;
 const slug = item.id;
 const { Content } = await render(item);
 
+// extract number from "object-12"
 const match = slug.match(/\d+$/);
 const num = match ? parseInt(match[0]) : null;
 
 let prev;
 prev = num - 1;
-if (prev < 10) {
-  prev = num && num > 1 ? `object-0${num - 1}` : null;
+if( prev< 10){
+  prev = prev = num && num > 1 ? `object-0${num - 1}` : null;
 } else {
   prev = num && num > 1 ? `object-${num - 1}` : null;
-}
-
+};
 let next;
 next = num + 1;
-if (next < 10) {
+if(next < 10){
   next = num ? `object-0${num + 1}` : null;
 } else {
   next = num ? `object-${num + 1}` : null;
-}
+};
 
-if (num == 1) prev = `object-${object_number}`;
-if (num == object_number) next = "object-01";
+if(num == 1){
+  prev = `object-${object_number}`;
+};
+if(num == object_number){
+  next = "object-01";
+};
 
-const note_colours = ["y", "b", "g", "p"].sort(() => Math.random() - 0.5);
+const note_colours = ["y", "b", "g", "p"]
+  .sort(() => Math.random() - 0.5);
+
 const [colour1, colour2, colour3] = note_colours;
 
 const main = `${BASE}gallery/${slug}/main.webp`;
 const portrait = `${BASE}gallery/${slug}/portrait.webp`;
 const card = `${BASE}gallery/${slug}/card.webp`;
 ---
-
 <Layout>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
+    <!-- <title>{item.data.title}</title> -->
   </head>
 
   <body>
     <script define:vars={{ num, object_number }}>
-      window.doRandom = function () {
-        let randomNumber;
-        do {
-          randomNumber = Math.floor(Math.random() * object_number) + 1;
-        } while (randomNumber === num);
+      window.doRandom = function (){
+      let randomNumber;
 
-        if (randomNumber < 10) randomNumber = "0" + randomNumber;
+      do {
+        randomNumber = Math.floor(Math.random() * object_number) + 1;
+      }while (randomNumber === num);
+      if(randomNumber < 10){
+        randomNumber = "0" + randomNumber;
+      }
+      const randomPage = "object-" + randomNumber;
+      window.location.href = `${BASE}gallery/${randomPage}`;
 
-        window.location.href = `${BASE}gallery/object-${randomNumber}`;
       };
 
-      window.doCheck = function () {
+      window.doCheck = function() {
+        // Get the checkbox
+        console.log("doCheck running")
         var checkBox = document.getElementById("myCheck");
+        // Get the output text
         var text = document.getElementById("text");
-
-        if (checkBox.checked) {
+        // If the checkbox is checked, display the output text
+        if (checkBox.checked == true){
           text.style.display = "block";
           card.style.display = "none";
         } else {
@@ -81,47 +93,52 @@ const card = `${BASE}gallery/${slug}/card.webp`;
           card.style.display = "block";
         }
       };
+
     </script>
 
+    <!-- <h1>{item.data.title}</h1> -->
+
+    <!--{item.data.description && <p>{item.data.description}</p>} -->
+
     <header class="object-header">
-      <a href={BASE} class="title-link">
-        <img src={`${BASE}title.webp`} class="title-image" />
-      </a>
+      <a href={BASE} class="title-link" ><img src={`${BASE}title.webp`} alt="Queer Object Archive" class="title-image" /></a>
 
       <a href={`${BASE}gallery/${prev}`} class="nav-link-left">
-        <img src={`${BASE}prev_${colour2}.webp`} class="sticky-note" />
+        <img src={`${BASE}prev_${colour2}.webp`} alt="prev" class="sticky-note" />
       </a>
 
-      <img src={main} class="main-image" />
+      <img src={main} alt="" class="main-image" />
+
 
       <a href={`${BASE}gallery/${next}`} class="nav-link-right">
-        <img src={`${BASE}next_${colour3}.webp`} class="sticky-note" />
+        <img src={`${BASE}next_${colour3}.webp`} alt="next" class="sticky-note" />
       </a>
-
-      <div id="nav-link-random">
-        <img src={`${BASE}RANDOM_${colour1}.webp`} class="sticky-note" onclick="doRandom()" />
+      <div id="nav-link-random"> 
+      <img src={`${BASE}RANDOM_${colour1}.webp`} alt="Random object" class="sticky-note" onclick="doRandom()"/>
       </div>
     </header>
 
+    
+
     <div class="images">
-      <div class="controls">
-        <img src={`${BASE}mspaint2.webp`} class="side-icon" />
-
-        <label class="switch">
-          <input type="checkbox" id="myCheck" onclick="doCheck()" />
-          <span class="slider round"></span>
-        </label>
-
-        <img src={`${BASE}mspaint1.webp`} class="side-icon" />
+      <div class = "controls">
+      <img src=`${BASE}mspaint2.webp` id="left-icon" class="side-icon" />
+      <label class="switch">
+        <input type="checkbox" id="myCheck" onclick="doCheck()">
+        <span class="slider round"></span>
+      </label>
+      <img src=`${BASE}mspaint1.webp` id= "slider" class="side-icon" />
       </div>
 
       <section class="portrait">
-        <img src={portrait} />
+        <img src={portrait} alt="" />
       </section>
 
       <section class="card-text">
-        <img src={card} id="card" />
-
+        <img src={card} alt="" id="card" />
+        <!--  <p id="text" class="text" style="display:none">
+          {item.body}
+        </p> -->
         <div id="text" class="text" style="display:none">
           <div id="text-inner">
             <div id="box">
@@ -130,109 +147,521 @@ const card = `${BASE}gallery/${slug}/card.webp`;
           </div>
         </div>
       </section>
-    </div>
+
+
   </body>
 </html>
 
 <style>
 
-/* =========================
-   MOBILE
-========================= */
+/*@font-face {
+  font-family: myFont;
+  src: url(../../assets/handwriting5.ttf);
+}*/
+
+/* MOBILE LAYOUT */
 @media (max-width: 600px) {
 
-  body {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-  }
-
-  /* HEADER */
   .object-header {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: auto 1fr auto 1fr auto;
+    grid-template-rows: auto auto;
     grid-template-areas:
       "title prev . next random"
-      "main main main main main";
+      "main  main main main main";
 
     align-items: center;
-    gap: 6px;
-    padding: 0 4vw;
+    gap: 5px;
+    /*padding: 20px 4vw 0 4vw;*/
+    padding: 0 5vw 0 5vw;
+  }
+
+  .title-image {
+    max-width: 100px;
+    display: block;
+    height: auto;
+    justify-self: center;
+  }
+
+  .title-link {
+  display: block;
+  grid-area: title;
+  justify-self: center;
+  display: flex;
+  align-items: center;
+  }
+
+  .nav-link-left {
+    grid-area: prev;
+    justify-self: center;
+  }
+
+  .nav-link-right {
+    grid-area: next;
+    justify-self: center;
+  }
+
+  #nav-link-random {
+    grid-area: random;
+    justify-self: center;
   }
 
   .main-image {
     grid-area: main;
-    width: 100%;
+    justify-self: center;
+
+    width: 100%; 
     height: auto;
+
+    /*margin: 10px 0;*/
+    /*transform: scale(1.2);*/
   }
 
-  /* MAIN COLUMN (KEY FIX) */
+  .sticky-note {
+    max-width: 100px;
+    height: auto;
+    cursor: pointer;
+  }
+
+  /* =========================
+     IMAGES SECTION (STACKED)
+     ========================= */
+
   .images {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
+    padding: 0 10vw 0 10vw;
+  }
 
+  .controls {
+    order: 0;
+  }
+
+  .card-text {
+    order: 1;
+  }
+
+  .portrait {
+    order: 2;
+  }
+
+  .images section,
+  .card-text,
+  .controls {
     width: 100%;
-    max-width: 520px;     /* prevents huge scaling */
-    margin: 0 auto;       /* centers everything */
-
-    padding: 0 16px;
-    box-sizing: border-box;
-
-    gap: 16px;
+    max-width: 100%;
   }
 
   .images img {
-    width: 100%;
-    height: auto;
-    display: block;
+  width: 100%;
+  height: auto;
+  display: block;
   }
 
-  /* CONTROLS */
+
+  /* =========================
+     CONTROLS (SLIDER AREA)
+     ========================= */
+
   .controls {
     display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
+    grid-template-columns: auto auto auto;
     justify-items: center;
+    align-items: center;
+    padding: 0 30vw 0 30vw;
+    gap: 0px;
 
-    width: 100%;
-    gap: 8px;
+    grid-column: auto;
+    grid-row: auto;
   }
 
   .side-icon {
-    width: 40px;
+    width: 100%;
+    max-width: 60px;
     height: auto;
+    justify-self: center;
   }
 
   .switch {
-    transform: scale(1.05);
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
   }
 
-  /* TEXT */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ffe600;
+    transition: 0.4s;
+    transform: scale(1.5);
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: rgb(51, 0, 255);
+    transition: 0.4s;
+  }
+
+  input:checked + .slider {
+    background-color: #ff0000;
+  }
+
+  input:checked + .slider:before {
+    transform: translateX(26px);
+  }
+
+  .slider.round {
+    border-radius: 34px;
+  }
+
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  /* =========================
+     TEXT / CARD AREA
+     ========================= */
+
   #text-inner {
-    padding: 6px;
-    max-width: 100%;
+  padding: 4px;
+  max-width: 100%;
   }
 
   #box {
-    padding: 10px;
-    margin: 10px 0;
-    max-width: 100%;
+  padding: 10px;
+  max-width: 100%;
+  margin: 10px 0;
   }
 
   .text {
+    padding: 0;
     font-family: "Georgia", serif;
     display: flex;
     justify-content: center;
     text-align: justify;
+    text-justify: inter-word;
   }
 
+  /*#text-inner {
+    padding: 5px;
+    max-width: 95%;
+  }*/
+
+  /*#box {
+    padding: 5px;
+    border: 2px double black;
+    border-radius: 0;
+    max-width: 95%;
+    box-sizing: border-box;
+    margin: 5px auto;
+  }*/
+
   .text p {
-    padding: 8px;
-    margin: 0;
-    max-width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 8px;
+  }
+
+  /*.text p {
+    max-width: 90%;
+    margin: 0 auto 5px auto;
+    padding: 5px;
+    font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    line-height: 1.6;
+  }*/
+
+  section h2 {
+    margin-bottom: 8px;
+  }
+
+  /* Portrait + card images remain full width stack */
+  section img {
+    width: 100%;
+    height: auto;
+    display: block;
   }
 }
 
+/* LAPTOP LAYOUT */
+@media (min-width: 601px) {
+
+  .main-image {
+    grid-column: 3;
+    justify-self: center;
+    max-width: 180px;
+    width: 100%;
+    height: auto;
+    justify-self: center;
+  }
+
+  
+  .images {
+  display: grid;
+  /*grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));*/
+  grid-template-columns: auto;
+  grid-template-rows: auto auto auto;
+  gap: <'row-gap'> 0px <'column-gap'> 0px ;
+  padding: 5vw;
+  }
+
+  .left,
+  .right {
+    justify-self: center;
+  }
+
+.object-header {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  align-items: center;
+  gap: 8vw;
+  padding: 20px 6vw 0 6vw;
+}
+
+
+
+.title-image {
+  max-width: 100px;
+  width: 100%;
+  height: auto;
+  justify-self: center;
+}
+
+.sticky-note {
+  max-width: 100px;
+  height: auto;
+  justify-self: center;
+  cursor: pointer;
+}
+
+.left {
+  justify-self: start;
+}
+
+.right {
+  justify-self: end;
+}
+
+.nav-link {
+  font-size: clamp(0.8rem, 2vw, 1.2rem);
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-items: center;
+  align-items: center;
+  padding: 0 5vw 0 5vw;
+  gap: 3px;
+}
+
+.side-icon {
+  width: 100%;
+  max-width: 40px;
+  height: auto;
+  justify-self: center;
+}
+
+.left-icon {
+  grid-column: 2;
+}
+
+.right-icon {
+  grid-column: 4;
+}
+
+.slider {
+  grid-column: 3;
+}
+
+.images {
+  display: grid;
+  /*grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));*/
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto auto auto;
+  gap: <'row-gap'> 0px <'column-gap'> 0px ;
+  padding: 5vw;
+}
+
+section img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.images section:nth-of-type(1) {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.images section:nth-of-type(2) {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.card-text {
+  grid-column: 2;
+  grid-row: 2;
+  position: relative;
+}
+
+.card-text img,
+/*
+.text {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 2rem;
+  box-sizing: border-box;
+  text-align: center;
+  font-family: "Lucida Handwriting", cursive;
+}
+
+.text p {
+  display: flex;
+  max-width: 80%;
+  padding: 1.5rem;
+
+  border: 1px solid black;
+  border-radius: 12px;
+
+  font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+  line-height: 1.4;
+} */
+
+.text {
+  padding: 0;
+  /*font-family: "Lucida Handwriting", cursive;*/
+  font-family: "Georgia", serif;
+  display: flex;
+  justify-content: center;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+#text-inner {
+  padding: 1rem;
+  max-width: 85%;
+}
+
+#box {
+  padding: 1.5rem;
+  border: 2px double black;
+  border-radius: 0px;
+
+  max-width: 85%;
+  box-sizing: border-box;
+  margin: 2rem auto;
+
+}
+
+.text p {
+  max-width: 80%;
+  margin: 0 auto 1rem auto;
+  padding: 1.5rem;
+
+  font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+
+  line-height: 1.6;
+}
+
+.controls {
+  grid-column: 2;   /* right column */
+  grid-row: 1;      /* top row */
+  justify-self: center;
+  align-self: start;
+  /*margin-bottom: 10px;*/
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ffe600;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: rgb(51, 0, 255);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #ff0000;
+}
+
+/*input:focus + .slider {
+  box-shadow: 0 0 1px #000000;
+}*/
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+section h2 {
+  margin-bottom: 8px;
+}
+
+}
 </style>
 </Layout>
+
+
+
