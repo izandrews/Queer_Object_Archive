@@ -175,41 +175,65 @@ const card3 = `${BASE}gallery/${slug}/card3.jpg`;
 /* MOBILE LAYOUT */
 @media (max-width: 600px) {
 
+  /* =========================
+     OBJECT HEADER (FIXED GRID)
+     ========================= */
+
   .object-header {
-  display: grid;
-  grid-template-columns: auto auto auto auto auto;
-  grid-template-rows: auto auto;
-  align-items: center;
-  gap: 8vw;
-  padding: 20px 6vw 0 6vw;
-  }
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "title prev . next random"
+      "main  main main main main";
 
-  .nav-link-left {
-    grid-column: 2;
-  }
-
-  .nav-link-left {
-    grid-column: 4;
-  }
-
-  #nav-link-random {
-    grid-column: 1;
+    align-items: center;
+    gap: 8vw;
+    padding: 20px 6vw 0 6vw;
   }
 
   .title-image {
-    grid-column: 1;
+    grid-area: title;
     max-width: 100px;
     width: 100%;
     height: auto;
     justify-self: center;
   }
 
+  .nav-link-left {
+    grid-area: prev;
+    justify-self: center;
+  }
+
+  .nav-link-right {
+    grid-area: next;
+    justify-self: center;
+  }
+
+  #nav-link-random {
+    grid-area: random;
+    justify-self: center;
+  }
+
   .main-image {
-    grid-column: auto;
-    grid-row: 2;
+    grid-area: main;
     display: block;
     margin: 10px auto;
+    max-width: 180px;
+    width: 100%;
+    height: auto;
+    justify-self: center;
   }
+
+  .sticky-note {
+    max-width: 100px;
+    height: auto;
+    cursor: pointer;
+  }
+
+  /* =========================
+     IMAGES SECTION (STACKED)
+     ========================= */
 
   .images {
     display: flex;
@@ -232,47 +256,20 @@ const card3 = `${BASE}gallery/${slug}/card3.jpg`;
     display: block;
   }
 
-    .left,
-    .right {
-      justify-self: center;
-    }
-
-  .object-header {
-    display: grid;
-    grid-template-columns: auto auto auto auto auto;
-    align-items: center;
-    gap: 8vw;
-    padding: 20px 6vw 0 6vw;
-  }
-
-
-
-  .sticky-note {
-    max-width: 100px;
-    height: auto;
-    justify-self: center;
-    cursor: pointer;
-  }
-
-  .left {
-    justify-self: start;
-  }
-
-  .right {
-    justify-self: end;
-  }
-
-  .nav-link {
-    font-size: clamp(0.8rem, 2vw, 1.2rem);
-  }
+  /* =========================
+     CONTROLS (SLIDER AREA)
+     ========================= */
 
   .controls {
     display: grid;
     grid-template-columns: auto auto auto;
     justify-items: center;
     align-items: center;
-    padding: 0 5vw 0 5vw;
+    padding: 0 5vw;
     gap: 3px;
+
+    grid-column: auto;
+    grid-row: auto;
   }
 
   .side-icon {
@@ -282,52 +279,63 @@ const card3 = `${BASE}gallery/${slug}/card3.jpg`;
     justify-self: center;
   }
 
-  .left-icon {
-    grid-column: 2;
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
   }
 
-  .right-icon {
-    grid-column: 4;
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
   }
 
   .slider {
-    grid-column: 3;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ffe600;
+    transition: 0.4s;
   }
 
-
-  /*
-  .text {
-    width: 100%;
-    height: auto;
-    display: block;
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: rgb(51, 0, 255);
+    transition: 0.4s;
   }
 
-  .text {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 2rem;
-    box-sizing: border-box;
-    text-align: center;
-    font-family: "Lucida Handwriting", cursive;
+  input:checked + .slider {
+    background-color: #ff0000;
   }
 
-  .text p {
-    display: flex;
-    max-width: 80%;
-    padding: 1.5rem;
+  input:checked + .slider:before {
+    transform: translateX(26px);
+  }
 
-    border: 1px solid black;
-    border-radius: 12px;
+  .slider.round {
+    border-radius: 34px;
+  }
 
-    font-size: clamp(0.9rem, 1.2vw, 1.2rem);
-    line-height: 1.4;
-  } */
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  /* =========================
+     TEXT / CARD AREA
+     ========================= */
 
   .text {
     padding: 0;
-    /*font-family: "Lucida Handwriting", cursive;*/
     font-family: "Georgia", serif;
     display: flex;
     justify-content: center;
@@ -343,96 +351,29 @@ const card3 = `${BASE}gallery/${slug}/card3.jpg`;
   #box {
     padding: 1.5rem;
     border: 2px double black;
-    border-radius: 0px;
-
+    border-radius: 0;
     max-width: 85%;
     box-sizing: border-box;
     margin: 2rem auto;
-
   }
 
   .text p {
     max-width: 80%;
     margin: 0 auto 1rem auto;
     padding: 1.5rem;
-
     font-size: clamp(0.9rem, 1.2vw, 1.2rem);
-
     line-height: 1.6;
-  }
-
-  .controls {
-    grid-column: 2;   /* right column */
-    grid-row: 1;      /* top row */
-    justify-self: center;
-    align-self: start;
-    /*margin-bottom: 10px;*/
-  }
-
-  .switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-  }
-
-  /* Hide default HTML checkbox */
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-
-  /* The slider */
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ffe600;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: rgb(51, 0, 255);
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-
-  input:checked + .slider {
-    background-color: #ff0000;
-  }
-
-  /*input:focus + .slider {
-    box-shadow: 0 0 1px #000000;
-  }*/
-
-  input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
-  }
-
-  /* Rounded sliders */
-  .slider.round {
-    border-radius: 34px;
-  }
-
-  .slider.round:before {
-    border-radius: 50%;
   }
 
   section h2 {
     margin-bottom: 8px;
+  }
+
+  /* Portrait + card images remain full width stack */
+  section img {
+    width: 100%;
+    height: auto;
+    display: block;
   }
 }
 
