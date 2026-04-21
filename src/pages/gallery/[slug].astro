@@ -174,8 +174,18 @@ const card3 = `${BASE}gallery/${slug}/card3.jpg`;
 /* MOBILE LAYOUT */
 @media (max-width: 600px) {
 
+  .object-header {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-template-rows: auto auto;
+  align-items: center;
+  gap: 8vw;
+  padding: 20px 6vw 0 6vw;
+}
+
   .main-image {
     grid-column: auto;
+    grid-row: 2;
     display: block;
     margin: 10px auto;
   }
