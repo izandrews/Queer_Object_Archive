@@ -171,7 +171,7 @@ const card = `${BASE}gallery/${slug}/card.webp`;
       "main  main main main";
 
     align-items: center;
-    gap: 15px;
+    gap: <'column-gap'> 5px;
     padding: 0 5vw;
     justify-content: center;
   }
@@ -387,69 +387,69 @@ const card = `${BASE}gallery/${slug}/card.webp`;
     justify-self: center;
   }
 
-.object-header {
-  display: grid;
-  grid-template-columns: auto auto auto auto auto;
-  align-items: center;
-  gap: 8vw;
-  padding: 20px 6vw 0 6vw;
-}
+  .object-header {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    align-items: center;
+    gap: 8vw;
+    padding: 20px 6vw 0 6vw;
+  }
 
 
 
-.title-image {
-  max-width: 100px;
-  width: 100%;
-  height: auto;
-  justify-self: center;
-}
+  .title-image {
+    max-width: 100px;
+    width: 100%;
+    height: auto;
+    justify-self: center;
+  }
 
-.sticky-note {
-  max-width: 100px;
-  height: auto;
-  justify-self: center;
-  cursor: pointer;
-}
+  .sticky-note {
+    max-width: 100px;
+    height: auto;
+    justify-self: center;
+    cursor: pointer;
+  }
 
-.left {
-  justify-self: start;
-}
+  .left {
+    justify-self: start;
+  }
 
-.right {
-  justify-self: end;
-}
+  .right {
+    justify-self: end;
+  }
 
-.nav-link {
-  font-size: clamp(0.8rem, 2vw, 1.2rem);
-}
+  .nav-link {
+    font-size: clamp(0.8rem, 2vw, 1.2rem);
+  }
 
-.controls {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  justify-items: center;
-  align-items: center;
-  padding: 0 30vw 0 30vw;
-  gap: 3px;
-}
+  .controls {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-items: center;
+    align-items: center;
+    padding: 0 30vw 0 30vw;
+    gap: 3px;
+  }
 
-.side-icon {
-  width: 100%;
-  max-width: 40px;
-  height: auto;
-  justify-self: center;
-}
+  .side-icon {
+    width: 100%;
+    max-width: 40px;
+    height: auto;
+    justify-self: center;
+  }
 
-.left-icon {
-  grid-column: 2;
-}
+  .left-icon {
+    grid-column: 2;
+  }
 
-.right-icon {
-  grid-column: 4;
-}
+  .right-icon {
+    grid-column: 4;
+  }
 
-.slider {
-  grid-column: 3;
-}
+  .slider {
+    grid-column: 3;
+  }
 
 
 section img {
@@ -467,7 +467,6 @@ section img {
 .card-text {
   grid-column: 2;
   grid-row: 2;
-  position: relative;
 }
 
 .portrait img,
