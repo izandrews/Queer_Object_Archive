@@ -375,12 +375,11 @@ const card = `${BASE}gallery/${slug}/card.webp`;
 
   
   .images {
-  display: grid;
-  /*grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));*/
-  grid-template-columns: auto;
-  grid-template-rows: auto auto auto;
-  gap: <'row-gap'> 0px <'column-gap'> 0px ;
-  padding: 5vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* equal columns */
+    grid-template-rows: auto auto;
+    gap: 2rem;
+    padding: 5vw;
   }
 
   .left,
@@ -452,14 +451,6 @@ const card = `${BASE}gallery/${slug}/card.webp`;
   grid-column: 3;
 }
 
-.images {
-  display: grid;
-  /*grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));*/
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: auto auto auto;
-  gap: <'row-gap'> 0px <'column-gap'> 0px ;
-  padding: 5vw;
-}
 
 section img {
   width: 100%;
@@ -467,15 +458,11 @@ section img {
   display: block;
 }
 
-.images section:nth-of-type(1) {
+.portrait {
   grid-column: 1;
   grid-row: 2;
 }
 
-.images section:nth-of-type(2) {
-  grid-column: 2;
-  grid-row: 2;
-}
 
 .card-text {
   grid-column: 2;
@@ -483,9 +470,8 @@ section img {
   position: relative;
 }
 
-.card-text img,
-/*
-.text {
+.portrait img,
+.card-text img {
   width: 100%;
   height: auto;
   display: block;
