@@ -45,10 +45,10 @@ if(num == object_number){
   next = "object-01";
 };
 
-const note_colours = ["y", "b", "g", "p"]
-  .sort(() => Math.random() - 0.5);
+//const note_colours = ["y", "b", "g", "p"]
+  //.sort(() => Math.random() - 0.5);
 
-const [colour1, colour2, colour3] = note_colours;
+//const [colour1, colour2, colour3] = note_colours;
 
 const main = `${BASE}gallery/${slug}/main.webp`;
 const portrait = `${BASE}gallery/${slug}/portrait.webp`;
@@ -63,7 +63,14 @@ const card = `${BASE}gallery/${slug}/card.webp`;
   </head>
 
   <body>
-    <script define:vars={{ num, object_number }}>
+    <script>
+    const note_colours = ["y", "b", "g", "p"]
+    .sort(() => Math.random() - 0.5);
+    const [colour1, colour2, colour3] = note_colours;
+
+    // then dynamically swap image srcs
+    </script>
+    <script define:vars={{ num, object_number, BASE }}>
       window.doRandom = function (){
       let randomNumber;
 
