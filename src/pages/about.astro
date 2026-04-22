@@ -1,7 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
+const BASE = import.meta.env.BASE_URL;
 ---
 <Layout>
+<a href={BASE} class="title-link" ><img src={`${BASE}title.webp`} alt="Queer Object Archive" class="title-image" /></a>
 <div id="text">
      <div id="text-inner">
          <div id="box">
@@ -19,11 +21,20 @@ import Layout from "../layouts/Layout.astro";
 
 
 <style>
+
+    .title-image{
+        display:block;
+        margin-left:auto;
+        margin-right:auto;
+        width: 80px;
+    }
+
 	#text {
     font-family: "Georgia", serif;
     text-align: justify;
     text-justify: inter-word;
     width: 100%;
+    font-size: medium;
   }
 
 
@@ -41,14 +52,4 @@ import Layout from "../layouts/Layout.astro";
   box-sizing: border-box;
   margin: 2rem auto;
 
-}
-
-#text p {
-  max-width: 80%;
-  margin: 0 auto 1rem auto;
-  padding: 1.5rem;
-
-  font-size: clamp(0.9rem, 1.2vw, 1.2rem);
-
-  line-height: 1.6;
 }
