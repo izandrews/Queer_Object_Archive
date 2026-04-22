@@ -49,18 +49,47 @@ const colour2 = note_colours[num2];
     </div>
 
 <style>
+/* LAPTOP LAYOUT */
+  @media (min-width: 601px) {
+    .site-header {
+      display: grid;
+      grid-template-columns: auto auto auto;
+      align-items: center;
+      padding: 15px 30vw;
+      column-gap: 3vw;
+      }
+
+    .title-image {
+      max-width: 150px;
+      width: 100%;
+      height: auto;
+      justify-self: center;
+    }
+
+    .grid {
+      display: grid;
+      /*grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));*/
+      grid-template-columns: auto auto auto;
+      gap: 10px;
+      padding: 5vw;
+    }
+
+    .left {
+      justify-self: start;
+    }
+
+    .right {
+      justify-self: end;
+    }
+
+  }
+
 
 .card:hover {
   transform: scale(1.09);
 }
 
-.grid {
-  display: grid;
-  /*grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));*/
-  grid-template-columns: auto auto auto;
-  gap: 10px;
-  padding: 5vw;
-}
+
 
 img {
   max-width: 100%;
@@ -115,20 +144,6 @@ h1 {
   }
 }
 
-.site-header {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  align-items: center;
-  padding: 15px 30vw;
-  column-gap: 3vw;
-}
-
-.title-image {
-  max-width: 150px;
-  width: 100%;
-  height: auto;
-  justify-self: center;
-}
 
 .sticky-note {
   max-width: 150px;
@@ -136,14 +151,6 @@ h1 {
   height: auto;
 } 
 
-
-.left {
-  justify-self: start;
-}
-
-.right {
-  justify-self: end;
-}
 
 .nav-link {
   font-size: clamp(0.8rem, 2vw, 1.2rem);

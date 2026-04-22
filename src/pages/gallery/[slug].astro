@@ -227,6 +227,8 @@ const card = `${BASE}gallery/${slug}/card.webp`;
     max-width: 600px;
     margin: 0 auto;
     padding: 0 16px;
+    display: flex;
+    flex-direction: column;
   }
 
   .images section,
@@ -243,15 +245,15 @@ const card = `${BASE}gallery/${slug}/card.webp`;
   }
 
   .controls {
-    grid-row: 2;
+    order: 0;
   }
 
   .card-text {
-    grid-row: 3;
+    order: 1;
   }
 
   .portrait {
-    order: 1;
+    order: 2;
   }
 
 
