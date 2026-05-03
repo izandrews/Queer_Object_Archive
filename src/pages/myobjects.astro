@@ -1,0 +1,120 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const BASE = import.meta.env.BASE_URL;
+
+// change this to however many images you have
+const COUNT = 20;
+
+const myobjects = [];
+
+for (let i = 1; i <= COUNT; i++) {
+  const num = String(i).padStart(2, "0");
+  myobjects.push(`object${num}`);
+}
+---
+
+<Layout>
+
+    <div class="grid">
+    {myobjects.map((filename) => {
+        const mainImage = `${BASE}myobjects/${filename}.webp`;
+
+        return (
+        <a href={mainImage} class="card">
+            <img src={mainImage} alt={filename} loading="lazy" />
+        </a>
+        );
+    })}
+    </div>
+
+<style>
+/* LAPTOP LAYOUT */
+  @media (min-width: 601px) {
+
+    .grid {
+      display: grid;
+      /*grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));*/
+      grid-template-columns: auto auto auto;
+      gap: 10px;
+      padding: 5vw;
+    }
+
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    h1 {
+      font-size: clamp(1.5rem, 4vw, 3rem);
+    }
+
+    .card {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .card h2 {
+      font-size: 1rem;
+      margin-top: 8px;
+    }
+
+ }
+
+
+/* PHONE LAYOUT */
+@media (max-width: 600px) {
+
+  .grid {
+    display: grid;
+    /*grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));*/
+    grid-template-columns: auto;
+    gap: 10px;
+    padding: 5vw;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+  .card:hover {
+    transform: scale(1.09);
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  h1 {
+    font-size: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  .card {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .card img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .card h2 {
+    font-size: 1rem;
+    margin-top: 8px;
+  }
+
+}
+
+</style>
+</Layout>
