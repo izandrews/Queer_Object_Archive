@@ -15,15 +15,18 @@ for (let i = 1; i <= COUNT; i++) {
 ---
 
 <Layout>
+    <div class="header">
+        <img src="/me.webp" />
+    </div>
 
     <div class="grid">
     {myobjects.map((filename) => {
         const mainImage = `${BASE}myobjects/${filename}.webp`;
 
         return (
-        <a href={mainImage} class="card">
+        <div class="card">
             <img src={mainImage} alt={filename} loading="lazy" />
-        </a>
+        </div>
         );
     })}
     </div>
@@ -32,10 +35,16 @@ for (let i = 1; i <= COUNT; i++) {
 /* LAPTOP LAYOUT */
   @media (min-width: 601px) {
 
+    .header{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        width: 100%;
+        gap: 10px;
+
     .grid {
       display: grid;
       /*grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));*/
-      grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto;
+      grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
       gap: 10px;
       padding: 5vw;
     }
