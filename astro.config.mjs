@@ -1,8 +1,6 @@
 import { defineConfig } from 'astro/config';
-import pwa from '@astrojs/pwa';
 
 export default defineConfig({
-  integrations: [pwa()],
   site: 'https://queerobjectarchive.com',
   base: '/',
 });

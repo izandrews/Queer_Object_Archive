@@ -8,8 +8,17 @@ const BASE = import.meta.env.BASE_URL;
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" href={`${BASE}title.webp`} />
 		<meta name="generator" content={Astro.generator} />
+		<link rel="manifest" href="/manifest.json" />
+		<meta name="theme-color" content="#000000" />
 		<title>q.o.a.</title>
 	</head>
+	<script>
+		if ('serviceWorker' in navigator) {
+			window.addEventListener('load', () => {
+			navigator.serviceWorker.register('/sw.js');
+			});
+		}
+	</script>
 	<body>
     <slot />
   	</body>
