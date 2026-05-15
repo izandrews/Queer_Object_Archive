@@ -214,9 +214,9 @@ ADDED from C:\Users\isabe\Documents\Websites\Queer_Object_Archive\app\src\main\A
 	android:name
 		ADDED from C:\Users\isabe\Documents\Websites\Queer_Object_Archive\app\src\main\AndroidManifest.xml:126:24-91
 meta-data#android.support.customtabs.trusted.DISPLAY_MODE
-ADDED from C:\Users\isabe\Documents\Websites\Queer_Object_Archive\app\src\main\AndroidManifest.xml:132:13-133:52
+ADDED from C:\Users\isabe\Documents\Websites\Queer_Object_Archive\app\src\main\AndroidManifest.xml:132:13-133:45
 	android:value
-		ADDED from C:\Users\isabe\Documents\Websites\Queer_Object_Archive\app\src\main\AndroidManifest.xml:133:17-49
+		ADDED from C:\Users\isabe\Documents\Websites\Queer_Object_Archive\app\src\main\AndroidManifest.xml:133:17-42
 	android:name
 		ADDED from C:\Users\isabe\Documents\Websites\Queer_Object_Archive\app\src\main\AndroidManifest.xml:132:24-86
 meta-data#android.support.customtabs.trusted.SCREEN_ORIENTATION

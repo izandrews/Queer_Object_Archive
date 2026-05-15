@@ -218,11 +218,11 @@
 129                android:value="@string/fallbackType" />
 129-->C:\Users\isabe\Documents\Websites\Queer_Object_Archive\app\src\main\AndroidManifest.xml:127:17-53
 130            <meta-data
-130-->C:\Users\isabe\Documents\Websites\Queer_Object_Archive\app\src\main\AndroidManifest.xml:132:13-133:52
+130-->C:\Users\isabe\Documents\Websites\Queer_Object_Archive\app\src\main\AndroidManifest.xml:132:13-133:45
 131                android:name="android.support.customtabs.trusted.DISPLAY_MODE"
 131-->C:\Users\isabe\Documents\Websites\Queer_Object_Archive\app\src\main\AndroidManifest.xml:132:24-86
-132                android:value="sticky-immersive" />
-132-->C:\Users\isabe\Documents\Websites\Queer_Object_Archive\app\src\main\AndroidManifest.xml:133:17-49
+132                android:value="immersive" />
+132-->C:\Users\isabe\Documents\Websites\Queer_Object_Archive\app\src\main\AndroidManifest.xml:133:17-42
 133            <meta-data
 133-->C:\Users\isabe\Documents\Websites\Queer_Object_Archive\app\src\main\AndroidManifest.xml:136:13-137:54
 134                android:name="android.support.customtabs.trusted.SCREEN_ORIENTATION"
