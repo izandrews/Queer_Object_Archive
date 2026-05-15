@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.queerobjectarchive.twa",
+      "sha256_cert_fingerprints": [
+        "A6:67:A3:1A:41:A3:67:BD:C3:FD:CD:23:EB:07:2C:56:6A:AE:87:3A:76:8D:02:06:75:1C:59:A5:87:7F:59:F0"
+      ]
+    }
+  }
+]
